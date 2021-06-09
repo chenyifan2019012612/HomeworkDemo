@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>别看我只是一只咩</title>
+    <style>
+        /* 导航CSS效果 */
+        .con{
+            width: 100%;
+            height: 60px;
+            background: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        a{
+            text-align: center;
+            line-height: 60px;
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover{
+            color: orange;
+        }
+
+        .left-a{
+            flex-grow: 3;
+        }
+
+        .right-a{
+            font-size: 14px;
+            color: gainsboro;
+        }
+
+        .nav-right{
+            font-size: 14px;
+            flex-grow: 1;
+        }
+
+        .nav-center{
+            flex-grow: 1;
+        }
+
+        .img-left{
+            width: 80px;
+            height: 60px;
+            line-height: 60px;  
+            margin-left: 5%;  
+            flex-grow: 2;
+        }
+
+        .img-right{
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 15px;
+            margin-right: 5%;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .sousuo{
+            margin: 0;
+            color: yellow;
+            position: absolute;
+            top: 29px;
+            right: 165px;
+            font-size: 13px;
+            color: gainsboro;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        #nav-img{
+            width: 15px;
+            height: 20px;     
+            background-image: url(./images/图标.png);
+            background-position: -559px -20px;
+            margin-top: 7px;
+            display: inline-block;
+        }
+
+        /* 歌词、进度条CSS效果 */
+        .sing-left{
+            float: left;
+            text-align: center;
+            width: 50%;
+        }
+
+        .sing-p1{
+            margin-top: 5%;
+        }
+
+        .sing-p2{
+            font-size: 14px;
+            display: inline-block;
+        }
+        
+        .sing-p22{
+            color: orange;
+        }
+
+        .sing-p3{
+            font-size: 10px;
+        }
+
+        .sing-p4{
+            font-size: 15px;
+        }
+
+        .sing-a1{
+            font-size: 14px;
+            color: black;
+        }
+
+        .sing-a2{
+            font-size: 14px;
+            color: orange;
+        }
+
+        .sing-words{
+            height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sing-img{
+            width: 10px;
+            height: 10px;
+        }
+
+        .sing-right{
+            float: left;
+            width: 50%;
+        }
+
+        @keyframes animation1{
+            0%{
+                transform: rotate(0deg);
+            }
+
+            100%{
+                transform: rotate(360deg);
+            }
+
+        }
+
+        .rsing-img{
+            border-radius: 50%;
+            margin-top: 5%;
+            margin-left: 30%;
+            animation: animation1 5s linear infinite;
+        }
+        #playBtn{
+            background-image: url(./images/6.jpg);
+            background-position: -110px 0px;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            float: left;
+            top: 290px;    
+            left: 690px;
+        }
+
+        #progressLine{
+            width: 320px;
+            height: 5px;
+            background-color: rgb(207, 204, 204);
+            border-radius: 5px;
+            float: left;
+            position: absolute;
+            margin: 0 auto;
+            top: 310px;    
+            left: 739px;
+            z-index: -1;
+        }
+
+        #progressLine1{
+            width: 320px;
+            height: 5px;
+            background-color: orange;
+            border-radius: 5px;
+            float: left;
+            position: absolute;
+            margin: 0 auto;
+            top: 310px; 
+            left: 739px;
+            z-index: -2;
+        }
+
+        #timer{
+            margin-right: 30%;
+            color: rgb(207, 204, 204);
+            float: left;
+            margin: 0;
+            position: absolute;
+            top: 302px; 
+            right: 155px;
+        }
+
+        #progressBtn{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: orange;
+            position: absolute;
+            float: left;
+            top: 308px;
+            left: 739px;
+        }
+
+        #muteBtn{
+            background-image: url(./images/6.jpg);
+            background-position: -35px 10px;
+            background-repeat: no-repeat;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            float: left;
+            top: 294px;    
+            right: 125px;
+        }
+
+        .downLoad{
+            background-image: url(./images/6.jpg);
+            background-position: 50px -40px;
+            width: 250px;
+            height: 100px;
+            position: absolute;
+            top: 370px;    
+            right: 310px;
+            background-repeat: no-repeat;
+        }
+
+        .downLoadImg{
+            background-image: url(./images/6.jpg);
+            background-position: 21px 22px;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 367px;    
+            right: 465px;
+            background-repeat: no-repeat;
+        }
+
+        .downLoadP{
+            position: absolute;
+            color: black;
+            top: 368px;    
+            right: 340px;
+        }
+
+        .guoziyi{
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            top: 450px;    
+            right: 500px;
+        }
+
+        .talk{
+            width: 230px;
+            height: 60px;
+            position: absolute;
+            top: 460px;    
+            right: 250px;
+        }
+
+        .singer{
+            margin: 0;
+            position: absolute;
+            font-size: 13px;
+            color: grey;
+            top: 470px;    
+            right: 355px;
+            z-index: 1;
+        }
+
+        .gif{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 500px;    
+            right: 440px;
+        }
+
+        .songName{
+            margin: 0;
+            position: absolute;
+            font-size: 13px;
+            top: 495px;    
+            right: 345px;
+            z-index: 1;
+        }
+
+        .xianchang{
+            color: purple;
+            position: absolute;
+            font-size: 13px;
+            top: 475px;    
+            right: 260px;
+        }
+
+        /* 评论CSS效果 */
+        #comment{
+            width: 800px;
+            height: 700px;
+            position: absolute;
+            top: 650px;
+            left: 18%;
+        }
+
+        #comment-left{
+            margin: 0;
+            display: inline-block;
+        }
+
+        #comment-right{
+            margin: 0;
+            display: inline-block;
+            font-size: 13px;
+            padding-left: 20px;
+        }
+
+        #comment-img{
+            width: 70px;
+            height: 70px;
+            position: absolute;
+        }
+
+        #note_text{
+            position: absolute;
+            border: 1px solid gainsboro;
+            width: 700px;
+            height: 120px;
+            right: 5px;
+        }
+
+        .smile{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 180px;
+            left: 90px;
+        }
+
+        #commentNum{
+            font-size: 14px;
+            margin: 0;
+            display: inline-block;
+            position: absolute;
+            top: 182px;
+            right: 110px;
+        }
+
+        #commentBtn{
+            border: none;
+            background: orange;
+            color: white;
+            font-size: 14px;
+            width: 70px;
+            height: 30px;
+            position: absolute;
+            top: 175px;
+            right: 10px;
+        }
+
+        .jingcai{
+            margin: 0;
+            display: inline-block;
+            font-size: 14px;
+            position: absolute;
+            top: 240px;
+        }
+
+        .Hr{
+            position: absolute;
+            top: 260px;
+            width: 800px;
+        }
+
+        #restoreDiv{
+            position: absolute;
+            top: 260px;
+            width: 800px;
+            height: 380px;
+        }
+
+        /* 分页码 */
+        .pageNum{
+            position: absolute;
+            top: 1290px;
+            left: 40%;
+            width: 200px;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .pageNum>div:nth-child(n){
+            display: inline-block;
+            font-size: 16px;
+            text-align: center;
+            line-height: 25px;
+            color: rgb(112, 109, 109);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: rgb(229, 226, 226);
+        }
+
+        .pageNum>div:nth-child(n):hover{
+            color: white;
+            background-color: orange;
+        }
+
+        .pageNum>p{
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 导航栏部分 -->
+    <div class = "con">
+        <img class = "img-left" src="./images/3.jpg" />
+        <a class="left-a" href="#">首页</a>
+        <a class="left-a" href="#">榜单</a>
+        <a class="left-a" href="#">下载酷我客户端</a>
+        <div class="nav-center">
+            <div id="nav-img"></div>
+            <a class="right-a" href="#">美女秀</a>
+        </div>
+        <div class="nav-center">
+            <div id="nav-img"></div>
+            <a class="right-a" href="#">酷我耳机</a>
+        </div>
+        <div class="nav-center">
+            <div id="nav-img"></div>
+            <a class="right-a" href="#">VIP会员</a>
+        </div>
+        <div class="nav-center"">
+            <div id="nav-img"></div>
+            <a class="right-a" href="#">i听</a>
+        </div>
+        <a class="nav-right" href="#">更多服务</a>
+        <a class="nav-right" href="#">登录</a>
+        <a class="nav-right" href="#">^</a>
+        <p class="sousuo">找到好音乐</p>
+        <img class = "img-right" src="./images/5.png" />
+    </div>
+
+    <!-- 歌词部分 -->
+    <div class="sing-left">
+        <p class="sing-p1">喜羊羊</p>
+        <p class="sing-p2">专辑：</p>
+        <p class="sing-p2 sing-p22">儿童大全&nbsp;&nbsp;</p>
+        <p class="sing-p2">歌手：</p>
+        <p class="sing-p2 sing-p22">华语群星&nbsp;&nbsp;</p>
+        <a href="#" class="sing-a1">分享&nbsp;&nbsp;</a>
+        <img class="sing-img" src="./images/2.jpg" />
+        <a href="#" class="sing-a2">&nbsp;&nbsp;评论</a>
+        <p class="sing-p3">上传时间：2015-10-02&nbsp;歌曲来源：网络</p>
+        <hr width="70%" />
+        <div class="sing-words">
+            <p class="sing-p4">喜羊羊美羊羊懒羊羊沸羊羊</p>
+            <p class="sing-p4">慢羊羊软绵绵红太狼灰太狼</p>
+            <p class="sing-p4">别看我只是一只羊</p>
+            <p class="sing-p4">绿草也为我变的更香</p>
+            <p class="sing-p4">天空因为我变的更蓝</p>
+            <p class="sing-p4">白云也为我变的柔软</p>
+            <p class="sing-p4">别看我只是一只羊</p>
+            <p class="sing-p4">羊儿的聪明难以想像</p>
+            <p class="sing-p4">天再高心情一样奔放</p>
+            <p class="sing-p4">每天都追赶太阳...</p>
+            <p class="sing-p4">有什么难题去牵绊我都不会去心伤</p>
+            <p class="sing-p4">有什么危险在我面前也不会去慌乱</p>
+            <p class="sing-p4">就算有狼群把我追捕也当做游戏一场</p>
+            <p class="sing-p4">在什么时间都爱开心笑容都会飞翔</p>
+            <p class="sing-p4">就算会摔倒站得起来永远不会沮丧</p>
+            <p class="sing-p4">在所有天气拥有叫人大笑的力量</p>
+            <p class="sing-p4">虽然我只是羊… … </p>
+        </div>
+    </div>
+
+    <div class="sing-right">
+        <img class="rsing-img" src="./images/1.jpg" />
+        <audio autoplay="autoplay" id="mymusic">
+            <source src="./images/1.mp3" type="audio/mp3">
+        </audio>
+        <div class="btn">
+            <div id="playBtn"></div>
+        </div>
+        <div id="progressBtn"></div>
+        <p id="progressLine"></p>
+        <p id="progressLine1"></p>
+        <p id="timer">00:00</p>
+        <div id="muteBtn"></div>
+        <div class="downLoad"></div>
+        <div class="downLoadImg"></div>
+        <a class="downLoadP" href="#">免费下载这首歌</a>
+        <img class="guoziyi" src="./images/郭子仪.jpg" />
+        <p class="singer">郭子仪——H5班</p>
+        <img class="talk" src="./images/talk.jpg" />
+        <img class="gif" src="./images/gif.gif" />
+        <p class="songName">喜羊羊与灰太狼</p>
+        <a class="xianchang" href="#">去现场 ></a>
+   </div>
+
+   <!-- 评论区部分 -->
+   <div id="comment">
+       <p id="comment-left">评论</p>
+       <p id="comment-right">1703条评论</p>
+       <hr />
+       <img id="comment-img" src="./images/郭子仪.jpg" />
+       <textarea type="text" id="note_text" placeholder="分享你的音乐见解"></textarea>
+       <img class="smile" src="./images/smile.png" />
+       <p id="commentNum">已输入0个字</p>
+       <button id="commentBtn">评论</button>
+       <p class="jingcai">精彩评论</p>
+       <div class="Hr"><hr /></div>
+       <div id="restoreDiv">
+       </div>
+   </div>
+
+   <!-- 分页码 -->
+    <div class="pageNum">
+        <div> < </div>
+        <div> 1 </div>
+        <div> 2 </div>
+        <div> 3 </div>
+        <p>…</p>
+        <div> 17 </div>
+        <div> > </div>
+   </div>
+</body>
+<script>
+    var valueNum = document.getElementById("note_text");
+    var commentNum = document.getElementById("commentNum");
+    valueNum.onkeydown = function(){
+        if(event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40){
+            valueNum.value.length += 0;
+            commentNum.innerHTML = "已输入" + valueNum.value.length + "个字";
+        }
+        else if(event.keyCode == 13){
+            valueNum.value.length -= 1;
+            commentNum.innerHTML = "已输入" + valueNum.value.length + "个字";
+        }
+        else{
+            valueNum.value.length += 1;
+            commentNum.innerHTML =  "已输入" + (valueNum.value.length + 1) + "个字";
+        }
+    }
+
+    var intervalId;
+    var btn = document.getElementById("playBtn");
+    var playBtn = document.getElementById("playBtn");
+    var muteBtn = document.getElementById("muteBtn");
+    var currentProgress = document.getElementById("progressLine");
+    var currentProgress1 = document.getElementById("progressLine1");
+    var point = document.getElementById("progressBtn")
+    var timer = document.getElementById("timer");
+
+    var note_text = document.getElementById("note_text");
+    var commentBtn = document.getElementById("commentBtn");
+    var restoreDiv = document.getElementById("restoreDiv");
+    var now = new Date();
+    var year = now.getFullYear(); 
+    var month = now.getMonth(); 
+    var date = now.getDate(); 
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    hours = hours >= 10 ? hours : "0" + hours;
+    minutes = minutes >= 10 ? minutes : "0" + minutes;
+    seconds = seconds >= 10 ?seconds : "0" + seconds;
+    var dateTime = year + "-" + (month+1) + "-" + date + "&nbsp;&nbsp;" + hours + ":" + minutes + ":" + seconds;
+
+    btn.onclick = function (){
+        if(mymusic.paused){
+            this.style.backgroundPosition = "-207px 0px";
+            mymusic.play();
+            intervalId = setInterval(changeProgress, 1000);
+        }
+        else{
+            clearInterval(intervalId);
+            this.style.backgroundPosition = "-110px 0px";
+            mymusic.pause();
+        }
+    }
+
+     //定时执行切换当前播放进度
+    function changeProgress(){
+        var currentTime = mymusic.currentTime;
+        var duration = mymusic.duration;
+
+        //当前播放时间的显示
+        var minute = parseInt(currentTime / 60);
+        var second = currentTime % 60;
+        minute = minute >= 10 ? minute : ("0" + minute);
+        second = second >= 10 ? parseInt(second) : ("0" + parseInt(second));
+        timer.innerHTML = minute + ":" + second;
+
+        //播放进度条效果
+        var barWidth = 320;
+        var rate = currentTime / duration;
+        currentProgress.style.width = 320 - barWidth*rate + "px";
+        currentProgress.style.left = 739 + barWidth*rate + "px";
+        point.style.left = 739 + barWidth*rate+ "px";
+
+        if(minute ==2 && second == 48){
+            mymusic.pause();
+            playBtn.style.backgroundPosition = "-110px 0px";
+        }
+    }
+
+    //是否静音
+    var n = 0;
+    muteBtn.onclick = function(){
+        n += 1;
+        if(n % 2 == 0){
+            mymusic.muted = false;
+        }
+        else{
+            mymusic.muted = true;
+        }
+    }
+
+    // 评论区存储
+    function saveComment(commentContent) {
+        var commentList = localStorage['commentList'];
+		if(commentList == null || commentList == "") {
+			commentList = '[]';
+		}
+		commentList = JSON.parse(commentList);
+		var commentObj = {
+			commentId: commentList.length,
+			commentContent: commentContent,
+            commentTime: dateTime
+		}
+		commentList.push(commentObj);
+		commentList = JSON.stringify(commentList);
+		localStorage["commentList"] = commentList;
+	}
+
+    function getComment() {
+        restoreDiv.innerHTML = "";
+		var commentList = localStorage['commentList'];
+		commentList = JSON.parse(commentList);
+		for(var i = 0; i < commentList.length; i++) {
+            var img = new Image();
+            img.src = "./images/郭子仪.jpg";
+            var imgData = img.src;
+            var imgNode = document.createElement("img");
+            imgNode.style.width = "70px";
+            imgNode.style.height = "70px";
+            imgNode.style.marginTop = "20px";
+            imgNode.src = imgData;
+
+			var divNode = document.createElement("div");
+            divNode.style.position = "absolute";
+            divNode.style.marginTop = "50px";
+            divNode.style.marginLeft = "10px";
+            divNode.style.width = "700px";
+            divNode.style.wordWrap = "break-word";
+            divNode.style.display = "inline-block";
+            divNode.style.fontSize = "13px";
+			divNode.setAttribute("commentid", commentList[i]['commentId']);
+			divNode.innerHTML = commentList[i]['commentContent'];
+
+            var divNode1 = document.createElement("div");
+            divNode1.style.position = "relative";
+            divNode1.style.top = "40px";
+            divNode1.style.left = "80px";
+            divNode1.style.fontSize = "15px";
+            divNode1.style.color = "orange";
+            divNode1.style.width = "60px";
+			divNode1.innerHTML = "郭子仪";
+
+            var divNode2 = document.createElement("div");
+            divNode2.style.position = "absolute";
+            divNode2.style.marginTop = "15px";
+            divNode2.style.marginLeft = "750px";
+            divNode2.style.fontSize = "14px";
+            divNode2.style.width = "60px";
+			divNode2.innerHTML = "分享";
+
+            var divNode3 = document.createElement("div");
+            divNode3.style.position = "absolute";
+            divNode3.style.marginTop = "90px";
+            divNode3.style.marginLeft = "10px";
+            divNode3.style.wordWrap = "break-word";
+            divNode3.style.display = "inline-block";
+            divNode3.style.fontSize = "13px";
+			divNode3.innerHTML = commentList[i]['commentTime'];
+
+            var divNode4 = document.createElement("div");
+            divNode4.style.position = "absolute";
+            divNode4.style.marginLeft = "600px";
+            divNode4.style.fontSize = "14px";
+            divNode4.style.width = "60px";
+			divNode4.innerHTML = "删除";
+
+            var divNode5 = document.createElement("div");
+            divNode5.style.position = "absolute";
+            divNode5.style.marginLeft = "665px";
+            divNode5.style.fontSize = "14px";
+            divNode5.style.width = "60px";
+			divNode5.innerHTML = "163";
+
+            var img1 = new Image();
+            img1.src = "./images/good.jpg";
+            var imgData1 = img1.src;
+            var imgNode1 = document.createElement("img");
+            imgNode1.style.width = "15px";
+            imgNode1.style.height = "15px";
+            imgNode1.style.position = "relative";
+            imgNode1.style.top = "19px";
+            imgNode1.style.left = "630px";
+            imgNode1.src = imgData1;
+
+            var a = 0;
+            imgNode1.onclick = function(){
+                a += 1;
+                divNode5.innerHTML = 163 + a;
+            }
+
+            var divNode6 = document.createElement("div");
+            divNode6.style.position = "absolute";
+            divNode6.style.marginLeft = "750px";
+            divNode6.style.fontSize = "14px";
+            divNode6.style.width = "60px";
+			divNode6.innerHTML = "回复";
+
+            var divNode7 = document.createElement("div");
+            divNode7.style.position = "absolute";
+            divNode7.style.width = "800px";
+            divNode7.style.height = "1px";
+            divNode7.style.marginTop = "20px";
+            divNode7.style.backgroundColor = "gainsboro";
+
+            if(i >= 3){
+                divNode1.style.display = "none";
+                divNode2.style.display = "none";
+                divNode3.style.display = "none";
+                divNode4.style.display = "none";
+                divNode5.style.display = "none";
+                divNode6.style.display = "none";
+                divNode7.style.display = "none";
+                divNode.style.display = "none";
+                imgNode.style.display = "none";
+                imgNode1.style.display = "none";
+            }
+
+            restoreDiv.appendChild(divNode1);
+            restoreDiv.appendChild(divNode2);
+            restoreDiv.appendChild(imgNode);
+			restoreDiv.appendChild(divNode);
+            restoreDiv.appendChild(divNode3);
+            restoreDiv.appendChild(divNode4);
+            restoreDiv.appendChild(divNode5);
+            restoreDiv.appendChild(imgNode1);
+            restoreDiv.appendChild(divNode6);
+            restoreDiv.appendChild(divNode7);
+		}
+	}
+
+    commentBtn.onclick = function(){
+        saveComment(note_text.value);
+        getComment();
+    }
+</script>
+</html>
